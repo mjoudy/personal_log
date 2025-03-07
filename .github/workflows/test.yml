@@ -14,7 +14,7 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2
         with:
           activate-environment: logging_env  # Use our Conda env
-          python-version: 3.10  # Set Python version
+          python-version: 3.9  # Set Python version
           auto-update-conda: true
 
       - name: Create or Update Conda Environment  # Prevent conflicts if env exists
