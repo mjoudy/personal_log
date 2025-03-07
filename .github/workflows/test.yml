@@ -1,30 +1,38 @@
 name: Run Tests  # Name of the workflow
 
-on: [push, pull_request]  # Run CI/CD when code is pushed or a PR is opened
+on: [push, pull_request]  # Run CI/CD on push and pull requests
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # Use an Ubuntu-based GitHub Actions runner
+    runs-on: ubuntu-latest  # Use Ubuntu runner
 
     steps:
-      - name: Checkout repository  # Clone the repo inside the runner
+      - name: Checkout repository  # Clone the GitHub repo
         uses: actions/checkout@v3
 
-      - name: Set up Conda  # Install Miniconda inside GitHub Actions
+      - name: Set up Conda  # Install Miniconda
         uses: conda-incubator/setup-miniconda@v2
         with:
-          activate-environment: logging_env  # Auto-activate Conda environment
-          python-version: 3.10  # Use Python 3.10
+          activate-environment: logging_env  # Use our Conda env
+          python-version: 3.10  # Set Python version
           auto-update-conda: true
 
-      - name: Install dependencies  # Install packages using environment.yml
-        shell: bash -l {0}  # Ensures commands run inside Conda shell
-        run: |
-          conda env update --file environment.yml --name logging_env
-
-      - name: Run tests  # Execute tests inside the Conda environment
+      - name: Create or Update Conda Environment  # Prevent conflicts if env exists
         shell: bash -l {0}
         run: |
+          conda env list  # Show existing environments
+          if conda env list | grep -q "logging_env"; then
+            echo "Environment exists. Updating..."
+            conda env update --file environment.yml --name logging_env
+          else
+            echo "Creating new environment..."
+            conda env create --file environment.yml
+          fi
+
+      - name: Activate Conda Environment and Run Tests
+        shell: bash -l {0}
+        run: |
+          conda activate logging_env
           pytest
 
 
