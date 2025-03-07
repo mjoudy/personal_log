@@ -33,6 +33,6 @@ jobs:
         shell: bash -l {0}
         run: |
           conda activate logging_env
-          pytest
+          pytest app/tests/ --disable-warnings
 
 
