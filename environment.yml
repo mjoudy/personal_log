@@ -1,0 +1,19 @@
+name: logging_env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - fastapi
+  - uvicorn
+  - sqlalchemy
+  - psycopg2
+  - boto3
+  - openai
+  - pytest
+  - pre-commit
+  - black
+  - isort
+  - flake8
+  - httpx
+

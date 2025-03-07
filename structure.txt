@@ -1,0 +1,17 @@
+personal_logging_app/
+│── .github/workflows/        # GitHub Actions (CI/CD workflows)
+│── app/                      # Main backend application
+│   ├── main.py               # FastAPI entry point (Runs the API)
+│   ├── database.py           # Database setup (Connects to PostgreSQL)
+│   ├── models.py             # Defines database tables
+│   ├── schemas.py            # Defines API request/response structures
+│   ├── crud.py               # Functions to interact with the database
+│   ├── ai.py                 # OpenAI AI functions
+│   ├── config.py             # Configuration settings (environment variables)
+│   ├── tests/                # Unit & API tests
+│── .gitignore                # Files to ignore in Git (e.g., .env, __pycache__)
+│── environment.yml           # Conda environment file (dependencies)
+│── docker-compose.yml        # (Optional) Docker configuration (later)
+│── Dockerfile                # (Optional) Dockerfile (for deployment)
+│── README.md                 # Project documentation
+
