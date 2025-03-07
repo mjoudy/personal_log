@@ -1,0 +1,9 @@
+# Ignore environment files
+.env
+app/.env
+
+# Ignore system files
+__pycache__/
+*.pyc
+*.pyo
+
